@@ -1,21 +1,500 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shuangshan Li - Project Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EE548 Final Project</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 300px 20px 40px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            line-height: 1.4;
+        }
+        .authors {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .abstract {
+            background-color: #fff;
+            padding: 25px;
+            border-left: 4px solid #2c3e50;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 1.1em;
+        }
+        .abstract h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .abstract p {
+            margin: 0;
+            text-align: justify;
+        }
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-caption {
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+        }
+        .section {
+            background-color: #fff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+        }
+        .objectives-section {
+            border-left: 4px solid #27ae60;
+        }
+        .approach-section {
+            border-left: 4px solid #e74c3c;
+            background-color: #fef9f9;
+        }
+        .methods-section {
+            border-left: 4px solid #3498db;
+        }
+        .results-section {
+            border-left: 4px solid #f39c12;
+        }
+        .conclusions-section {
+            border-left: 4px solid #9b59b6;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .math-formula {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+        .variable-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .variable-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .toc-container {
+            position: fixed;
+            top: 20px;
+            right: 40px;
+            width: 280px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .toc-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .toc-content {
+            padding: 15px;
+            display: block;
+        }
+        .toc-content.collapsed {
+            display: none;
+        }
+        .toc-item {
+            margin: 8px 0;
+        }
+        .toc-item a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: block;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .toc-item a:hover {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        .toc-item.active a {
+            background-color: #2c3e50;
+            color: white;
+        }
+        @media (max-width: 1600px) {
+            body {
+                max-width: 1200px;
+                padding: 20px 280px 20px 40px;
+            }
+        }
+        @media (max-width: 1400px) {
+            body {
+                max-width: 1000px;
+                padding: 20px 260px 20px 30px;
+            }
+            .toc-container {
+                width: 240px;
+                right: 30px;
+            }
+        }
+        @media (max-width: 1200px) {
+            body {
+                max-width: 900px;
+                padding: 20px;
+            }
+            .toc-container {
+                position: relative;
+                width: 100%;
+                margin: 20px 0;
+                right: auto;
+                top: auto;
+            }
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Learning-based Control for 3D Printing Robots</h1>
-  <p><strong>Shuangshan Li</strong>, Nathan Kutz, Jon Gelsey</p>
-  <p><em>Presented at ICRA 2024</em></p>
+    <!-- Table of Contents -->
+    <div class="toc-container">
+        <div class="toc-header" onclick="toggleTOC()">
+            📚 Contents
+        </div>
+        <div class="toc-content" id="tocContent">
+            <div class="toc-item"><a href="#abstract">Why we need this</a></div>
+            <div class="toc-item"><a href="#objectives">Objectives</a></div>
+            <div class="toc-item"><a href="#approach">Proposed Approach</a></div>
+            <div class="toc-item"><a href="#methods">Computational Methods</a></div>
+            <div class="toc-item"><a href="#results">Experimental Results</a></div>
+            <div class="toc-item"><a href="#conclusions">Conclusions & What's Next</a></div>
+        </div>
+    </div>
 
-  <p>
-    📄 <a href="paper.pdf">[Download Paper]</a><br>
-    🎥 <a href="https://youtube.com/yourvideo">[Demo Video]</a><br>
-    💻 <a href="https://github.com/ShuangshanLi/yourproject">[Code]</a>
-  </p>
+    <header>
+        <h1>How We Kept a Robot Arm Steady on Bumpy Terrain</h1>
+        <div class="authors">Shuangshan Li</div>
+    </header>
 
-  <h2>Abstract</h2>
-  <p>This project proposes a novel method for...</p>
+    <section class="abstract" id="abstract">
+        <h2>Why we need this</h2>
+        <p>Imagine you're controlling a robot with a camera on a mountain path. If the camera shakes as the robot moves, it’s nearly impossible to get clear video.
+
+            That’s why we developed a system to keep the robot arm stable even on uneven ground — like a virtual “gimbal” that thinks ahead and adjusts itself.</p>
+    </section>
+
+    <div class="image-container">
+        <img src="outdoor.png" alt="Outdoor robotic platform demonstration">
+        <div class="image-caption">Figure 1: Operational scenario diagram: field mobile robot</div>
+    </div>
+
+    <section class="section objectives-section" id="objectives">
+        <h2>Objectives</h2>
+        <p>The objective of this project is to develop an active End-Effector Stabilization system for robotic arms on mobile platforms operating in uneven mountainous terrain, enabling the capturing and recording of high-quality video footage.</p>
+        
+        <p>Our system has 3 goals:</p>
+        <ul>
+            <li><span class="bold">Predict terrain movement:</span> Understand how the robot will shake or tilt using simulation.</li>
+            <li><span class="bold">Keep the tool stable:</span> Use smart control to adjust the robot arm in real time.</li>
+            <li><span class="bold">Test everything safely:</span> First in a virtual environment, then on real hardware.</li>
+        </ul>
+    </section>
+
+    <section class="section approach-section" id="approach">
+        <h2>Proposed Approach</h2>
+        <p>Our approach combines digital simulation with smart control algorithms to keep robot arms steady on rough terrain.</p>
+
+        <h3>Step 1: Building a Digital Twin</h3>
+        <p>We built a digital model of a robot driving over bumpy ground using MATLAB and Simscape. This "digital twin" lets us test different scenarios safely without risking real hardware.</p>
+
+        <h3>Step 2: Smart Prediction and Control</h3>
+        <p>We used Model Predictive Control (MPC) to "predict the future" - the system looks ahead to anticipate shaking and adjusts the robot arm before it gets disturbed. We also compared it with LQR (Linear Quadratic Regulator), a simpler but faster control method, to see which works better.</p>
+
+        <h3>Step 3: Testing with Simulated Terrain</h3>
+        <p>In the simulation, we added "fake bumps" and realistic terrain disturbances to test how well the system reacts under different conditions.</p>
+
+        <div class="image-container">
+            <img src="simulink_model.png" alt="MATLAB Simulink system architecture">
+            <div class="image-caption">Figure 2: Complete Simulink model showing the integration of terrain simulation, vehicle dynamics, manipulator control, and MPC algorithms</div>
+        </div>
+    </section>
+
+    <section class="section methods-section" id="methods">
+        <h2>Computational Methods</h2>
+        
+        <h3>How the Control System Works</h3>
+        <p>The control system works by predicting what will happen in the next few seconds, then choosing the best set of movements to stay stable.</p>
+        
+        <p><strong>Here's the simplified idea:</strong></p>
+        <ul>
+            <li>If the robot sees a bump ahead, it calculates how to tilt the arm to cancel it.</li>
+            <li>It does this again and again, very quickly — like a chess player thinking a few moves ahead.</li>
+            <li>The system balances two goals: staying on target vs. using smooth, energy-efficient movements.</li>
+        </ul>
+
+        <h3>The Math Behind It</h3>
+        <p>We use Model Predictive Control (MPC) - a mathematical framework that solves an optimization problem every few milliseconds. Think of it as constantly solving a puzzle: "Given where I am now and where I want to be, what's the best way to get there?"</p>
+        
+        <div class="image-container">
+            <img src="picture/simlink.png" alt="MPC control algorithm flowchart">
+            <div class="image-caption">Figure 4: MPC Control Algorithm Flowchart - from sensing errors to generating optimal control commands</div>
+        </div>
+        
+        <p><strong>How the algorithm works step by step:</strong></p>
+        <ul>
+            <li><strong>Inputs:</strong> The system measures two key errors - how far the robot is from its intended path (Y displacement) and how much its heading is off (Yaw angle)</li>
+            <li><strong>Augmented Error:</strong> These errors are combined into a single, weighted error value that considers both position and orientation</li>
+            <li><strong>Reference Trajectory:</strong> The system predicts where the robot should be in the next few time steps</li>
+            <li><strong>Optimization:</strong> It calculates the best control moves to minimize future errors while keeping movements smooth</li>
+            <li><strong>Output:</strong> The first control command is applied, and the whole process repeats</li>
+        </ul>
+        
+        <details style="margin: 20px 0; border: 1px solid #ddd; border-radius: 5px;">
+            <summary style="padding: 10px; background-color: #f8f9fa; cursor: pointer; border-radius: 5px;">
+                <strong>Click to see the detailed mathematical formulation</strong>
+            </summary>
+            <div style="padding: 15px;">
+                <h4>Some Basic Math of Model Predictive Control Framework for Multi-DOF and SISO Systems</h4>
+                
+                <div class="math-formula">
+        <strong>1. Augmented error:</strong><br>
+        (A) Manipulator: $\mathbf{e} = \mathbf{e}_{\text{pose}} \circ \mathbf{g}$, where $\mathbf{g} = [1, 1, 1, 2, 2, 2]^T$<br>
+        (B) Vehicle: $e_{\text{aug}} = e_y + k_\psi \cdot e_\psi$
+
+        <strong>2. Reference trajectory:</strong><br>
+        $$W = \begin{bmatrix} \alpha^1 \\ \alpha^2 \\ \vdots \\ \alpha^P \end{bmatrix} \cdot e, \quad \text{where } e = \begin{cases} e_k & \text{(per DOF, A)} \\ e_{\text{aug}} & \text{(B)} \end{cases}$$
+
+        <strong>3. Predicted output:</strong><br>
+        $$Y_0 = S \cdot (H \cdot e) + A \cdot \Delta U, \quad \text{where } A = \begin{cases} A_k & \text{(A)} \\ A & \text{(B)} \end{cases}$$
+
+        <strong>4. Optimization objective:</strong><br>
+        $$\min_{\Delta U} \quad \left\| A \cdot \Delta U + Y_0 - W \right\|_Q^2 + \left\| \Delta U \right\|_R^2$$
+
+        <strong>5. Closed-form solution:</strong><br>
+        $$\Delta U = \left( A^T Q A + R \right)^{-1} A^T Q (W - Y_0)$$
+
+        <strong>6. Control output:</strong><br>
+        $$u = \Delta U_1, \quad \text{where } u = \begin{cases} \Delta x_k & \text{(A, per DOF)} \\ \delta & \text{(B)} \end{cases}$$
+                </div>
+
+                <h4>Variable Definitions</h4>
+                <table class="variable-table">
+                    <tr>
+                        <td><strong>e_y</strong>: Lateral error (m)</td>
+                        <td><strong>e_ψ</strong>: Yaw error (rad)</td>
+                        <td><strong>k_ψ</strong>: Heading scaling (m/rad)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>e_k</strong>: Error in DOF k (m or rad)</td>
+                        <td><strong>g</strong>: DOF-specific gain vector</td>
+                        <td><strong>e</strong>: Weighted pose/orientation error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>α</strong>: Decay rate</td>
+                        <td><strong>W</strong>: Reference trajectory</td>
+                        <td><strong>Y₀</strong>: Predicted output</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A, A_k</strong>: Step-response matrix</td>
+                        <td><strong>H</strong>: Error correction vector</td>
+                        <td><strong>S</strong>: Shift matrix</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q, R</strong>: Weighting matrices</td>
+                        <td><strong>ΔU</strong>: Control increments</td>
+                        <td><strong>P, M</strong>: Prediction / control horizon</td>
+                    </tr>
+                    <tr>
+                        <td><strong>δ</strong>: Steering output (rad)</td>
+                        <td><strong>Δx</strong>: EE pose correction (6-DOF)</td>
+                        <td><strong>Δx_k</strong>: DOF-wise EE increment</td>
+                    </tr>
+                </table>
+            </div>
+        </details>
+
+        <h3>Why This Approach Works</h3>
+        <p>Traditional control methods react <em>after</em> the disturbance happens. Our MPC approach is like having a crystal ball - it predicts the disturbance and prepares the countermeasure in advance. This makes the robot much more stable and responsive.</p>
+    </section>
+
+    <section class="section results-section" id="results">
+        <h2>Experimental Results</h2>
+        
+        <h3>Virtual Testing</h3>
+        <p>We tested the system on a virtual terrain 20 meters long, full of bumps and slopes. We even pushed the robot sideways with a fake force!</p>
+        
+        <div class="image-container">
+            <img src="picture/MPC_steering.png" alt="3D simulation environment showing robot traversing uneven terrain">
+            <div class="image-caption">Figure 5: 3D Simulation Environment - Robot navigating through challenging terrain with different elevation levels and slopes</div>
+        </div>
+        
+        <p>The simulation environment recreates real-world challenges: <strong>uneven surfaces, slopes, and unexpected disturbances.</strong> As you can see in the image above, the robot must navigate through various terrain features that would normally cause significant shaking and instability.</p>
+        
+        <p>The robot's arm reacted and corrected itself — after 4 seconds, it was already back on 80.5% of its planned path. (This means it had recovered most of its stability and was closely following the intended route again.)</p>
+        
+        <h3>What the Data Shows</h3>
+        
+        <div class="image-container">
+            <img src="trajectory.png" alt="3D visualization of control logic showing reference trajectory, disturbance, and compensation">
+            <div class="image-caption">Figure 6: Visualizing Control Logic - Reference, Disturbance, and Compensation</div>
+        </div>
+        
+        <p><strong>To understand how our control system works, we created a set of 3D visualizations showing three key aspects of the robot's motion:</strong></p>
+        
+        <ul>
+            <li><strong>Reference Trajectory (Left):</strong> This is the ideal path the robot is supposed to follow, defined by target positions in 3D space (X, Y, Z). It represents a smooth and stable curve over flat terrain.</li>
+            
+            <li><strong>Actual Path with Disturbance (Middle):</strong> In reality, the robot moves over uneven ground, causing the chassis to shake and drift away from the reference path. This results in errors in both position and orientation, shown here as deviations from the ideal trajectory.</li>
+            
+            <li><strong>End-Effector Compensation (Right):</strong> To counteract this disturbance, the robotic arm actively adjusts its joints. The end-effector (tool tip) moves in the opposite direction of the disturbance to cancel out the chassis's motion. This way, it stays aligned with the original target, even as the base moves.</li>
+        </ul>
+        
+        <p>Together, these plots demonstrate how the system "feels" the disturbance and "reacts" in real-time to stay on course.</p>
+        
+        <h3>Real-World Testing</h3>
+        <p>We also tested the algorithm on a real mobile robot equipped with both a chassis and a manipulator. The system successfully demonstrated its capability to traverse terrain, maintain stability, and even perform complex tasks like additive construction (3D printing while moving).</p>
+        
+        <div class="image-container">
+            <img src="picture/printing.png" alt="Real robot performing 3D printing while moving - view 1">
+            <div class="image-caption">Figure 7a: Real-world implementation showing the mobile robot performing precise material extrusion</div>
+        </div>
+        
+        <div class="image-container">
+            <img src="picture/printing2.png" alt="Real robot performing 3D printing while moving - view 2">
+            <div class="image-caption">Figure 7b: Close-up view of the stabilized end-effector maintaining consistent layer deposition</div>
+        </div>
+        
+        <div class="image-container">
+            <img src="picture/printing3.png" alt="Real robot performing 3D printing while moving - view 3">
+            <div class="image-caption">Figure 7c: Demonstrating precise control even during mobile construction operations</div>
+        </div>
+        
+        <p><strong>The results speak for themselves:</strong> despite the chassis moving over surfaces, the robotic arm maintained precision, producing smooth and consistent material layers. This proves our control system works not just in simulation, but in the unpredictable real world.</p>
+    </section>
+
+    <section class="section conclusions-section" id="conclusions">
+        <h2>Conclusions & What's Next</h2>
+        
+        <h3>What We've Achieved</h3>
+        <p>We've shown that our system works — in both simulation and real-world tests. The robot can keep its arm steady even when driving over rough, unpredictable ground.</p>
+        
+        <h3>Future Improvements</h3>
+        <p>Next, we plan to add a depth camera to help "see" the bumps better, and improve the controller using nonlinear methods (NMPC). This will make the system even more responsive and precise.</p>
+        
+        <h3>Real-World Impact</h3>
+        <p>This could help robots build houses, patrol forests, or assist in rescue missions — even on rough, unpredictable terrain. Imagine robots that can work anywhere, anytime, without being limited by smooth surfaces.</p>
+    </section>
+
+    <script>
+        function toggleTOC() {
+            const tocContent = document.getElementById('tocContent');
+            tocContent.classList.toggle('collapsed');
+        }
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-item a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in TOC
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocItems = document.querySelectorAll('.toc-item');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.id;
+                }
+            });
+            
+            tocItems.forEach(item => {
+                const link = item.querySelector('a');
+                const href = link.getAttribute('href').substring(1);
+                
+                if (href === currentSection) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
